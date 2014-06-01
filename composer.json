@@ -6,7 +6,6 @@
 	"keywords": ["qiwi", "finance", "e-commerce", "payment", "e-shop"],
 	"homepage": "https://github.com/fintech-fab/qiwi-shop",
 	"version": "0.1",
-	"description": "",
 	"authors": [
 		{
 			"name": "Sergey Kozhuharov",
@@ -24,7 +23,7 @@
 		"classmap": [
 			"src/migrations",
 			"src/controllers",
-			"tests/ShopTestCase.php"
+			"tests/FintechFab/QiwiShop/ShopTestCase.php"
 		],
 		"psr-0": {
 			"FintechFab\\QiwiShop\\": "src/"
