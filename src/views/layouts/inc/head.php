@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>FINTECH_FAB::QiwiShop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Qiwi Shop Emulator</title>
 
 <link type="text/css" href="//code.jquery.com/ui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js "></script>
