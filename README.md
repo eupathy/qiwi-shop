@@ -92,6 +92,22 @@ And change user auth identifier for your web project `app/config/packages/fintec
 
 	'user_id' => 'user-auth-identifier',
 
+### Custom parameters in config:
+
+After publishing config set your parameters
+```PHP
+'provider' => array(
+		'name'     => 'your-company-name',
+		'id'       => 'your-qiwi-gate-id',
+		'password' => 'your-qiwi-gate-password',
+	),
+
+'lifetime' => 'validity-of-order', //number of days
+
+'gateUrl'  => 'url-to-qiwi-gate',
+
+```
+
 ## Development How to
 
 ### Workbench migrations

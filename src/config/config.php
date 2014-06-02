@@ -10,8 +10,7 @@ return array(
 
 	'user_id'  => Auth::user() ? Auth::user()->getAuthIdentifier() : null,
 
-	// Срок действия заказа в днях
-	'lifetime' => 3,
+	'lifetime' => 3, // Срок действия заказа в днях
 
 	'gateUrl'  => 'http://fintech-fab.dev/qiwi/gate/api/v2/prv/',
 
