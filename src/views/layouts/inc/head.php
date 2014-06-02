@@ -11,3 +11,7 @@
 <style type="text/css">
 	<?php require(__DIR__ . '/css/main.css') ?>
 </style>
+
+<script type="application/javascript">
+	<?php require(__DIR__ . '/js/main.js') ?>
+</script>
