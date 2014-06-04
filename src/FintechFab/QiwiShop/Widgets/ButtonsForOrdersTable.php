@@ -5,24 +5,15 @@ use Config;
 use FintechFab\QiwiShop\Components\Dictionary;
 use FintechFab\QiwiShop\Models\Order;
 use Form;
-use URL;
 
-
-/**
- * Class MakeTable
- *
- * @package FintechFab\QiwiShop\Widgets
- *
- * @return array
- */
-class MakeButton
+class ButtonsForOrdersTable
 {
 	/**
 	 * @param Order $order
 	 *
 	 * @return array
 	 */
-	public static function displayTable($order)
+	public static function getButtons($order)
 	{
 		$sumReturn = 0;
 		$status = Dictionary::statusRussian($order->status);
@@ -47,7 +38,7 @@ class MakeButton
 				$activity = self::buttons('showStatus', $order->id) . self::buttons('statusReturn', $order->id);
 				$statusReturn = $order->PayReturn->find($order->idLastReturn)->status;
 
-				//Вычисляем сумму для
+				//Вычисляем сумму возврата
 				$returnsBefore = $order->PayReturn;
 				foreach ($returnsBefore as $one) {
 					$sumReturn += $one->sum;
@@ -98,7 +89,7 @@ class MakeButton
 					'shop'        => Config::get('ff-qiwi-shop::provider.id'),
 					'transaction' => $order_id,
 				);
-				$button = link_to(url(URL::route('payIndex') . '?' . http_build_query($query_data)),
+				$button = link_to(Config::get('ff-qiwi-shop::payUrl') . '?' . http_build_query($query_data),
 					'Оплатить', array(
 						'target' => '_blank',
 						'class'  => 'btn btn-success margin-likeTableBtn',

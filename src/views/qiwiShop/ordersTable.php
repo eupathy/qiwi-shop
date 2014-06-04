@@ -3,7 +3,7 @@
  * @var Order $orders
  */
 use FintechFab\QiwiShop\Models\Order;
-use FintechFab\QiwiShop\Widgets\MakeButton;
+use FintechFab\QiwiShop\Widgets\ButtonsForOrdersTable;
 
 ?>
 <?= View::make('ff-qiwi-shop::qiwiShop.inc.payReturnModal') ?>
@@ -22,7 +22,7 @@ use FintechFab\QiwiShop\Widgets\MakeButton;
 		<td><b>Действия с заказом</b></td>
 	</tr>
 	<?php foreach ($orders as $order): ?>
-		<?php $arr = MakeButton::displayTable($order) ?>
+		<?php $arr = ButtonsForOrdersTable::getButtons($order) ?>
 		<tr>
 			<td><?= $order->id ?></td>
 			<td><?= $order->item ?></td>
