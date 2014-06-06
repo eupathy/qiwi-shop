@@ -12,6 +12,7 @@ use FintechFab\QiwiShop\Components\Validators;
 use FintechFab\QiwiShop\Models\Order;
 use FintechFab\QiwiShop\Models\PayReturn;
 use Input;
+use Log;
 use Validator;
 
 class OrderController extends BaseController
@@ -301,6 +302,24 @@ class OrderController extends BaseController
 			. Dictionary::statusRussian($newReturnStatus);
 
 		return $this->resultMessage($message, 'Сообщение');
+
+	}
+
+	public function processCallback()
+	{
+		$requestParams = Input::all();
+		Log::info('Получены параметры:', $requestParams);
+		$gate = new Gateway($this->makeCurl());
+		if ($gate->doParseCallback($requestParams)) {
+			$order = Order::find($gate->getCallbackOrderId());
+			$newStatus = $gate->getValueBillStatus();
+			Log::info('Статусы заказов:', array('oldStatus' => $order->status, 'newStatus' => $newStatus));
+			if ($order->status != $newStatus) {
+				$order->status = $newStatus;
+				$order->save();
+			}
+			$gate->doCallbackResponse();
+		}
 
 	}
 

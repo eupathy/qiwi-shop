@@ -72,14 +72,14 @@ class ButtonsForOrdersTable
 		switch ($type) {
 			case 'showStatus':
 				$button = Form::button('Статус счёта', array(
-					'class'       => 'btn btn-info tableBtn',
+					'class'       => 'btn btn-sm btn-info tableBtn',
 					'data-action' => 'showStatus',
 					'data-id'     => $order_id,
 				));
 				break;
 			case 'createBill':
 				$button = Form::button('Выставить счёт', array(
-					'class'       => 'btn btn-primary tableBtn',
+					'class'       => 'btn btn-sm btn-primary tableBtn',
 					'data-action' => 'createBill',
 					'data-id'     => $order_id,
 				));
@@ -92,19 +92,19 @@ class ButtonsForOrdersTable
 				$button = link_to(Config::get('ff-qiwi-shop::payUrl') . '?' . http_build_query($query_data),
 					'Оплатить', array(
 						'target' => '_blank',
-						'class'  => 'btn btn-success margin-likeTableBtn',
+						'class'  => 'btn btn-sm btn-success margin-likeTableBtn',
 					));
 				break;
 			case 'cancelBill':
 				$button = Form::button('Отменить', array(
-					'class'       => 'btn btn-warning tableBtn',
+					'class'       => 'btn btn-sm btn-warning tableBtn',
 					'data-action' => 'cancelBill',
 					'data-id'     => $order_id,
 				));
 				break;
 			case 'payReturn':
 				$button = Form::button('Возврат отплаты', array(
-					'class'       => 'btn btn-danger actionBtn',
+					'class'       => 'btn btn-sm btn-danger actionBtn',
 					'data-toggle' => 'modal',
 					'data-target' => '#payReturn',
 					'data-action' => 'payReturn',
@@ -113,7 +113,7 @@ class ButtonsForOrdersTable
 				break;
 			case 'statusReturn':
 				$button = Form::button('Статус возврата', array(
-					'class'       => 'btn btn-primary tableBtn',
+					'class'       => 'btn btn-sm btn-primary tableBtn',
 					'data-action' => 'statusReturn',
 					'data-id'     => $order_id,
 				));

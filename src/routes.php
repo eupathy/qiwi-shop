@@ -10,6 +10,7 @@ Route::group(array(
 		'as'   => 'ordersTable',
 		'uses' => 'OrderController@ordersTable',
 	));
+
 	Route::get('/create', array(
 		'as'   => 'createOrder',
 		'uses' => 'OrderController@createOrder',
@@ -22,12 +23,16 @@ Route::group(array(
 		'as'   => 'actionsOrdersTable',
 		'uses' => 'OrderController@getAction',
 	));
-
+	Route::get('/authError', array(
+		'as'   => 'shopAuthError',
+		'uses' => 'OrderController@authError',
+	));
 });
 
-Route::get('qiwi/shop/authError', array(
-	'as'   => 'shopAuthError',
-	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@authError',
+
+Route::post('/qiwi/shop/orders', array(
+	'as'   => 'processCallback',
+	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@processCallback',
 ));
 
 
