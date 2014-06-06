@@ -318,8 +318,8 @@ class OrderController extends BaseController
 				$order->status = $newStatus;
 				$order->save();
 			}
-			$gate->doCallbackResponse();
 		}
+		$gate->doCallbackResponse();
 
 	}
 
