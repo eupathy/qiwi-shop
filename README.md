@@ -1,9 +1,9 @@
 Qiwi Shop Emulator
 =========
 
-Gateway emulates shop for the qiwi system (REST Protocol).
+Эмулятор интернет магазина для работы с сервером QIWI.
 
-# Requirements
+# Требования
 
 - php >=5.3.0
 - Laravel Framework 4.1.*
@@ -11,16 +11,16 @@ Gateway emulates shop for the qiwi system (REST Protocol).
 - Laravel queue driver configuration
 - User auth identifier in your web project
 
-# Uses
+# Используется
 
 - bootstrap cdn
 - jquery cdn
 
-# Installation
+# Установка`
 
 ## Composer
 
-Package only:
+Только пакет:
 
     {
         "require": {
@@ -28,7 +28,7 @@ Package only:
         },
     }
 
-Package dependency:
+Пакет с зависимостями:
 
     {
         "require": {
@@ -42,20 +42,20 @@ Package dependency:
 	    },
     }
 
-Run it:
+Запустите:
 
 	composer update
 	php artisan dump-autoload
 
-## Local configuration
+## Локальные настройки
 
-Add service provider to `config/app.php`:
+Добавьте service provider в `config/app.php`:
 
 	'providers' => array(
 		'FintechFab\QiwiShop\QiwiShopServiceProvider'
 	)
 
-### Database connection named 'ff-qiwi-shop'
+### Соединение с базой данных назовите 'ff-qiwi-shop'
 
 Add to `config/#env#/database.php`:
 
@@ -75,26 +75,30 @@ Add to `config/#env#/database.php`:
 ),
 ```
 
-## Migrations
+## Миграции
+
+Выполните миграции базы:
 
 	php artisan migrate --package="fintech-fab/qiwi-shop" --database="ff-qiwi-shop"
 
-### Custom user auth identifier:
+### Получение id пользователя для авторизации:
 
-Default, user auth id detect by `Auth::user()->getAuthIdentifier()`.
-Your can set integer value (e.g. `'user_id' => 1`), or use some your function with identifier return;
+По умолчанию id пользователя определяется `Auth::user()->getAuthIdentifier()`.
+Вы можете установить целочисленное значение (например `'user_id' => 1`), или использовать какую-то вашу функцию
+определения id пользователя.
 
-For this, publish configuration from package:
+Для этого опубликуйте настройки из пакета:
 
-	php artisan config:publish fintech-fab/qiwi-shop
+	php artisan config:publish --path=vendor/fintech-fab/qiwi-shop/src/config fintech-fab/qiwi-shop
 
-And change user auth identifier for your web project `app/config/packages/fintech-fab/qiwi-shop/config.php`:
+И измените настройки получения id пользователя для вашего проекта `app/config/packages/fintech-fab/qiwi-shop/config.php`:
 
 	'user_id' => 'user-auth-identifier',
 
-### Custom parameters in config:
+### Поьзовательские настройки:
 
-After publishing config set your parameters
+После публикации настроек установите ваши параметры
+
 ```PHP
 'provider' => array(
 		'name'     => 'your-company-name',
@@ -102,13 +106,13 @@ After publishing config set your parameters
 		'password' => 'your-qiwi-gate-password',
 	),
 
-'lifetime' => 'validity-of-order', //number of days
+'lifetime' => 'validity-of-order', //Количество дней
 
 'gateUrl'  => 'url-to-qiwi-gate',
 
 ```
 
-## Development How to
+## Для разработчиков
 
 ### Workbench migrations
 
