@@ -104,11 +104,13 @@ Add to `config/#env#/database.php`:
 		'name'     => 'your-company-name',
 		'id'       => 'your-qiwi-gate-id',
 		'password' => 'your-qiwi-gate-password',
+		'key'      => 'your-qiwi-gate-key',
 	),
 
 'lifetime' => 'validity-of-order', //Количество дней
 
-'gateUrl'  => 'url-to-qiwi-gate',
+'gateUrl'  => 'url-to-qiwi-gate',  //URL на сервер QIWI
+'payUrl'   => 'url-for-pay-bill-in-qiwi-gate', //URL для оплаты счёта на сервере QIWI
 
 ```
 
