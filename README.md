@@ -2,6 +2,10 @@ Qiwi Shop Emulator
 =========
 
 Эмулятор интернет магазина для работы с сервером QIWI.
+Полноценно работает с пакетом QIWI-SDK, так же можно протестировать работу используя эмулятор сервера QIWI:
+
+- QIWI-SDK: https://github.com/fintech-fab/qiwi-sdk
+- QIWI-gate: https://github.com/fintech-fab/qiwi-gate
 
 # Требования
 
