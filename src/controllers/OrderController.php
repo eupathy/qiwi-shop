@@ -72,12 +72,26 @@ class OrderController extends BaseController
 
 	/**
 	 * Страница создания заказа
-	 *
-	 * @return void
 	 */
 	public function createOrder()
 	{
 		$this->make('createOrder');
+	}
+
+	/**
+	 * Страница описания эмулятора магазина
+	 */
+	public function about()
+	{
+		$this->make('about');
+	}
+
+	/**
+	 * Страница описания SDK для работы с qiwi-gate
+	 */
+	public function aboutSdk()
+	{
+		$this->make('aboutSdk');
 	}
 
 	/**

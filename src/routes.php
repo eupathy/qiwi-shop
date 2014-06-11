@@ -30,9 +30,19 @@ Route::group(array(
 });
 
 
-Route::post('/qiwi/shop/orders', array(
+Route::post('/qiwi/shop/orders/callback', array(
 	'as'   => 'processCallback',
 	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@processCallback',
+));
+
+Route::get('qiwi/shop/orders/about', array(
+	'as'   => 'aboutQiwiShop',
+	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@about',
+));
+
+Route::get('qiwi/shop/orders/aboutSdk', array(
+	'as'   => 'aboutSdk',
+	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@aboutSdk',
 ));
 
 
