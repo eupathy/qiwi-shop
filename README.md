@@ -10,7 +10,7 @@ Qiwi Shop Emulator
 # Требования
 
 - php >=5.3.0
-- Laravel Framework 4.1.*
+- Laravel Framework >= 4.1.*
 - MySQL Database
 - Laravel queue driver configuration
 - User auth identifier in your web project
