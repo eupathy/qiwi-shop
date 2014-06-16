@@ -19,7 +19,7 @@ Route::group(array(
 		'as'   => 'postCreateOrder',
 		'uses' => 'OrderController@postCreateOrder',
 	));
-	Route::post('/{action}', array(
+	Route::post('/action/{action}', array(
 		'as'   => 'actionsOrdersTable',
 		'uses' => 'OrderController@getAction',
 	));

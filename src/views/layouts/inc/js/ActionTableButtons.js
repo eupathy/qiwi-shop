@@ -5,7 +5,7 @@ $(document).ready(function () {
 		var action = $btn.data('action');
 		var id = $btn.data('id');
 
-		$.post('orders/' + action, {order_id: id},
+		$.post('orders/action/' + action, {order_id: id},
 			function (data) {
 				$('#message').dialog({
 					title: data['title'], show: 'fade', hide: 'fade', modal: true, close: function () {
@@ -32,7 +32,7 @@ $(document).ready(function () {
 		var sum = $modal.find('#inputSum').val();
 		var comment = $modal.find('#inputComment').val();
 
-		$.post('orders/' + action, {order_id: id, sum: sum, comment: comment},
+		$.post('orders/action/' + action, {order_id: id, sum: sum, comment: comment},
 			function (data) {
 				if (data['error']) {
 					$('#errorSum').html(data['error']['sum']);

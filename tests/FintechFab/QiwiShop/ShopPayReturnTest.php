@@ -40,7 +40,7 @@ class ShopPayReturnTest extends ShopTestCase
 	{
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/payReturn',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/payReturn',
 			array(
 				'order_id' => '1',
 			)
@@ -79,7 +79,7 @@ class ShopPayReturnTest extends ShopTestCase
 
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/payReturn',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/payReturn',
 			array(
 				'order_id' => '1',
 				'sum'      => '15',
@@ -98,7 +98,7 @@ class ShopPayReturnTest extends ShopTestCase
 	{
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/statusReturn',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/statusReturn',
 			array(
 				'order_id' => '1',
 			)
@@ -144,7 +144,7 @@ class ShopPayReturnTest extends ShopTestCase
 		));
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/statusReturn',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/statusReturn',
 			array(
 				'order_id' => '1',
 			)

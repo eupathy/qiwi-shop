@@ -38,7 +38,7 @@ class ShopShowStatusAndCancelBillTest extends ShopTestCase
 	{
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/showStatus',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/showStatus',
 			array(
 				'order_id' => '2',
 			)
@@ -76,7 +76,7 @@ class ShopShowStatusAndCancelBillTest extends ShopTestCase
 
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/showStatus',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/showStatus',
 			array(
 				'order_id' => '1',
 			)
@@ -111,7 +111,7 @@ class ShopShowStatusAndCancelBillTest extends ShopTestCase
 
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/cancelBill',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/cancelBill',
 			array(
 				'order_id' => '1',
 			)

@@ -42,7 +42,7 @@ class ShopCreateBillTest extends ShopTestCase
 		));
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/createBill',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/createBill',
 			array(
 				'order_id' => '10',
 			)
@@ -103,7 +103,7 @@ class ShopCreateBillTest extends ShopTestCase
 
 		$resp = $this->call(
 			'POST',
-			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/createBill',
+			Config::get('ff-qiwi-shop::testConfig.testUrl') . '/action/createBill',
 			array(
 				'order_id' => '1',
 			)
