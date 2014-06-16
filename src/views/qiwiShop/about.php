@@ -52,6 +52,6 @@
 
 		<p>
 			Callback запросы от сервера QIWI обрабатывается по адресу:<br>
-			http://fintech-fab.dev/qiwi/shop/orders/callback/qiwi/shop/orders/callback </p>
+			<?= URL::route('processCallback') ?> </p>
 	</div>
 </div>
