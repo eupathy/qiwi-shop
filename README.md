@@ -118,6 +118,17 @@ Add to `config/#env#/database.php`:
 
 ```
 
+## Использование
+
+Теперь пакет полностью готов к работе на вашем сайте.
+
+Подробнее о работе пакета - /qiwi/shop/orders/about
+
+Создание заказа - /qiwi/shop/orders/create
+
+Таблица заказов и действия с ними - /qiwi/shop/orders
+
+
 ## Для разработчиков
 
 ### Workbench migrations
