@@ -113,8 +113,11 @@ Add to `config/#env#/database.php`:
 
 'lifetime' => 'validity-of-order', //Количество дней
 
-'gateUrl'  => 'url-to-qiwi-gate',  //URL на сервер QIWI
-'payUrl'   => 'url-for-pay-bill-in-qiwi-gate', //URL для оплаты счёта на сервере QIWI
+// URL на сервер QIWI gateway
+'gateUrl'  => 'http://{gateway server host}/qiwi/gate/api/v2/prv/',
+
+// URL на сервер QIWI gateway для оплаты счёта
+'payUrl'   => 'http://{gateway server host}/qiwi/gate/order/external/main.action',
 
 ```
 
