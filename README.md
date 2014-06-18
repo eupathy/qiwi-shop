@@ -36,8 +36,8 @@ Qiwi Shop Emulator
 
     {
         "require": {
-	        "php": ">=5.3.0",
-	        "laravel/framework": "4.1.*",
+	        "php": ">=5.4.0",
+	        "laravel/framework": ">=4.1",
             "fintech-fab/qiwi-shop": "dev-master"
         },
 	    "require-dev": {
