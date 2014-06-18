@@ -41,7 +41,7 @@ Qiwi Shop Emulator
             "fintech-fab/qiwi-shop": "dev-master"
         },
 	    "require-dev": {
-		    "phpunit/phpunit": "3.7.*",
+		    "phpunit/phpunit": "4.3.*@dev",
 		    "mockery/mockery": "dev-master"
 	    },
     }
@@ -113,11 +113,8 @@ Add to `config/#env#/database.php`:
 
 'lifetime' => 'validity-of-order', //Количество дней
 
-// URL на сервер QIWI gateway
-'gateUrl'  => 'http://{gateway server host}/qiwi/gate/api/v2/prv/',
-
-// URL на сервер QIWI gateway для оплаты счёта
-'payUrl'   => 'http://{gateway server host}/qiwi/gate/order/external/main.action',
+'gateUrl'  => 'url-to-qiwi-gate',  //URL на сервер QIWI
+'payUrl'   => 'url-for-pay-bill-in-qiwi-gate', //URL для оплаты счёта на сервере QIWI
 
 ```
 

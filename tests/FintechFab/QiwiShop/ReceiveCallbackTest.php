@@ -41,16 +41,15 @@ class ReceiveCallbackTest extends ShopTestCase
 		$signData = $bill['amount'] . '|' . $bill['bill_id'] . '|' . $bill['ccy'] . '|' . $bill['command'] . '|' .
 			$bill['comment'] . '|' . $bill['error'] . '|' . $bill['prv_name'] . '|' . $bill['status'] . '|' . $bill['user'];
 		$sign = base64_encode(hash_hmac('sha1', $signData, $key));
-		$resp = $this->call(
+
+		$_SERVER['HTTP_X_API_SIGNATURE'] = $sign;
+		$_POST = $bill;
+
+		$this->call(
 			'POST',
 			URL::route('processCallback'),
-			$bill,
-			array(),
-			array(
-				'HTTP_X-Api-Signature' => $sign
-			)
+			$bill
 		);
-		dd($resp);
 
 	}
 
