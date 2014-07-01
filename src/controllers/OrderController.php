@@ -23,13 +23,11 @@ class OrderController extends BaseController
 	//Передаём настройки в Gateway
 	public function __construct()
 	{
-		$this->beforeFilter(function () {
-			$config = array(
-				'gateUrl'  => Config::get('ff-qiwi-shop::gateUrl'),
-				'provider' => Config::get('ff-qiwi-shop::provider'),
-			);
-			Gateway::setConfig($config);
-		});
+		$config = array(
+			'gateUrl'  => Config::get('ff-qiwi-shop::gateUrl'),
+			'provider' => Config::get('ff-qiwi-shop::provider'),
+		);
+		Gateway::setConfig($config);
 	}
 
 	//Определяем метод по $action переданному в url

@@ -43,7 +43,6 @@ class ReceiveCallbackTest extends ShopTestCase
 		$sign = base64_encode(hash_hmac('sha1', $signData, $key));
 
 		$_SERVER['HTTP_X_API_SIGNATURE'] = $sign;
-		$_POST = $bill;
 
 		$this->call(
 			'POST',
