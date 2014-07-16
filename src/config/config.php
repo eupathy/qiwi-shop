@@ -6,7 +6,7 @@ return array(
 		'name'     => 'Fintech-Fab',
 		'id'       => '',
 		'password' => '',
-		'key' => '',
+		'key'      => '',
 	),
 
 	'user_id'  => Auth::user() ? Auth::user()->getAuthIdentifier() : null,

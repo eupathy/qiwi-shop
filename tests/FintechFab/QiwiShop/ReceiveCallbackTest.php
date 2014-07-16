@@ -44,12 +44,71 @@ class ReceiveCallbackTest extends ShopTestCase
 
 		$_SERVER['HTTP_X_API_SIGNATURE'] = $sign;
 
-		$this->call(
+		$resp = $this->call(
+		'POST',
+			URL::route('processCallback'),
+			$bill
+		);
+
+		$this->assertContains('<?xml version="1.0"?><result><result_code>0</result_code></result>', $resp->original);
+	}
+
+	public function testReceiveCallbackSignFail()
+	{
+		$bill = array(
+			'bill_id'  => '1',
+			'status'   => 'waiting',
+			'error'    => 0,
+			'amount'   => 150,
+			'user'     => '+12345',
+			'prv_name' => 'Fintech-fab',
+			'ccy'      => 'RUB',
+			'comment'  => '',
+			'command'  => 'bill',
+		);
+		$key = Config::get('ff-qiwi-shop::provider.key') . 123;
+		$signData = $bill['amount'] . '|' . $bill['bill_id'] . '|' . $bill['ccy'] . '|' . $bill['command'] . '|' .
+			$bill['comment'] . '|' . $bill['error'] . '|' . $bill['prv_name'] . '|' . $bill['status'] . '|' . $bill['user'];
+		$sign = base64_encode(hash_hmac('sha1', $signData, $key));
+
+		$_SERVER['HTTP_X_API_SIGNATURE'] = $sign;
+
+		$resp = $this->call(
 			'POST',
 			URL::route('processCallback'),
 			$bill
 		);
 
+		$this->assertContains('<?xml version="1.0"?><result><result_code>150</result_code></result>', $resp->original);
+	}
+
+	public function testReceiveCallbackBillFail()
+	{
+		$bill = array(
+			'bill_id'  => '15',
+			'status'   => 'waiting',
+			'error'    => 0,
+			'amount'   => 150,
+			'user'     => '+12345',
+			'prv_name' => 'Fintech-fab',
+			'ccy'      => 'RUB',
+			'comment'  => '',
+			'command'  => 'bill',
+		);
+		$key = Config::get('ff-qiwi-shop::provider.key');
+		$signData = $bill['amount'] . '|' . $bill['bill_id'] . '|' . $bill['ccy'] . '|' . $bill['command'] . '|' .
+			$bill['comment'] . '|' . $bill['error'] . '|' . $bill['prv_name'] . '|' . $bill['status'] . '|' . $bill['user'];
+		$sign = base64_encode(hash_hmac('sha1', $signData, $key));
+
+		$_SERVER['HTTP_X_API_SIGNATURE'] = $sign;
+
+		$resp = $this->call(
+			'POST',
+			URL::route('processCallback'),
+			$bill
+		);
+
+		$this->assertContains('<?xml version="1.0"?><result><result_code>210</result_code></result>', $resp->original);
 	}
 
 }

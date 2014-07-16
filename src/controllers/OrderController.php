@@ -324,6 +324,11 @@ class OrderController extends BaseController
 		$gate = new Gateway($this->makeCurl());
 		if ($gate->doParseCallback($requestParams)) {
 			$order = Order::find($gate->getCallbackOrderId());
+			if (!$order) {
+				$gate->createCallbackResponse(Gateway::C_BILL_NOT_FOUND);
+
+				return $gate->doCallbackResponse();
+			}
 			$newStatus = $gate->getValueBillStatus();
 			Log::info('Статусы заказов:', array('oldStatus' => $order->status, 'newStatus' => $newStatus));
 			if ($order->status != $newStatus) {
@@ -331,8 +336,8 @@ class OrderController extends BaseController
 				$order->save();
 			}
 		}
-		$gate->doCallbackResponse();
 
+		return $gate->doCallbackResponse();
 	}
 
 	/**
