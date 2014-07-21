@@ -46,7 +46,7 @@ class ReceiveCallbackTest extends ShopTestCase
 
 		$resp = $this->call(
 		'POST',
-			URL::route('processCallback'),
+			URL::route('qiwiShop_processCallback'),
 			$bill
 		);
 
@@ -75,7 +75,7 @@ class ReceiveCallbackTest extends ShopTestCase
 
 		$resp = $this->call(
 			'POST',
-			URL::route('processCallback'),
+			URL::route('qiwiShop_processCallback'),
 			$bill
 		);
 
@@ -104,7 +104,7 @@ class ReceiveCallbackTest extends ShopTestCase
 
 		$resp = $this->call(
 			'POST',
-			URL::route('processCallback'),
+			URL::route('qiwiShop_processCallback'),
 			$bill
 		);
 

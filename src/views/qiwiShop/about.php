@@ -28,7 +28,7 @@
 				<a href="https://github.com/fintech-fab/qiwi-sdk"> GitHub </a>.
 			</li>
 			<li>
-				<a href="<?= URL::route('aboutSdk') ?>">Описание</a>.
+				<a href="<?= URL::route('qiwiShop_aboutSdk') ?>">Описание</a>.
 			</li>
 		</ul>
 		<p>
@@ -52,18 +52,18 @@
 
 		<p>
 			Callback запросы от сервера QIWI обрабатывается по адресу:<br>
-			<?= URL::route('processCallback') ?>
+			<?= URL::route('qiwiShop_processCallback') ?>
 		</p>
 
 		<p>
 			Создать заказ можно по адресу:<br>
-			<a href="<?= URL::route('createOrder') ?>"><?= URL::route('createOrder') ?></a><br>
+			<a href="<?= URL::route('qiwiShop_createOrder') ?>"><?= URL::route('qiwiShop_createOrder') ?></a><br>
 		</p>
 
 		<p>
 			Увидеть все заказы можно в таблице заказов:<br>
-			<a href="<?= URL::route('ordersTable') ?>"><?= URL::route('ordersTable') ?></a><br> Из этой таблицы
-			выполняются все действия с заказами<br> (выставить счёт, отменить, оплатить, происвести возврат оплаты,
-			проверить статус счёта или возврата). </p>
+			<a href="<?= URL::route('qiwiShop_ordersTable') ?>"><?= URL::route('qiwiShop_ordersTable') ?></a><br> Из
+			этой таблицы выполняются все действия с заказами<br> (выставить счёт, отменить, оплатить, происвести возврат
+			оплаты, проверить статус счёта или возврата). </p>
 	</div>
 </div>

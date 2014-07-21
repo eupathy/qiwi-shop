@@ -7,41 +7,41 @@ Route::group(array(
 ), function () {
 
 	Route::get('/', array(
-		'as'   => 'ordersTable',
+		'as' => 'qiwiShop_ordersTable',
 		'uses' => 'OrderController@ordersTable',
 	));
 
 	Route::get('/create', array(
-		'as'   => 'createOrder',
+		'as' => 'qiwiShop_createOrder',
 		'uses' => 'OrderController@createOrder',
 	));
 	Route::post('/create', array(
-		'as'   => 'postCreateOrder',
+		'as' => 'qiwiShop_postCreateOrder',
 		'uses' => 'OrderController@postCreateOrder',
 	));
 	Route::post('/action/{action}', array(
-		'as'   => 'actionsOrdersTable',
+		'as' => 'qiwiShop_actionsOrdersTable',
 		'uses' => 'OrderController@getAction',
 	));
 	Route::get('/authError', array(
-		'as'   => 'shopAuthError',
+		'as' => 'qiwiShop_shopAuthError',
 		'uses' => 'OrderController@authError',
 	));
 });
 
 
 Route::post('/qiwi/shop/orders/callback', array(
-	'as'   => 'processCallback',
+	'as' => 'qiwiShop_processCallback',
 	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@processCallback',
 ));
 
 Route::get('qiwi/shop/orders/about', array(
-	'as'   => 'aboutQiwiShop',
+	'as' => 'qiwiShop_about',
 	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@about',
 ));
 
 Route::get('qiwi/shop/orders/aboutSdk', array(
-	'as'   => 'aboutSdk',
+	'as' => 'qiwiShop_aboutSdk',
 	'uses' => 'FintechFab\QiwiShop\Controllers\OrderController@aboutSdk',
 ));
 
