@@ -1,7 +1,7 @@
 <?php
 Route::filter('ff.qiwi.shop.checkUser', function () {
 
-	$routeError = 'shopAuthError';
+	$routeError = 'qiwiShop_AuthError';
 	$routeAction = Route::current()->getAction();
 	$isErrorPage = $routeError == $routeAction['as'];
 
@@ -12,7 +12,7 @@ Route::filter('ff.qiwi.shop.checkUser', function () {
 			return Redirect::route($routeError);
 		}
 	} elseif ($isErrorPage) {
-		return Redirect::route('ordersTable');
+		return Redirect::route('qiwiShop_ordersTable');
 	}
 
 });
