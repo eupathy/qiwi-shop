@@ -48,7 +48,19 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_ordersTable')) ?> ">
 						<a href="<?= URL::route('qiwiShop_ordersTable') ?>">Таблица заказов</a>
 					</li>
-
+					<?php
+					if (Route::has('registration')) {
+						if (Config::get('ff-qiwi-gate::user_id') > 0) {
+							?>
+							<li><a class="top-link" href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li><?php
+						} else {
+							?>
+							<li><a class="top-link" href="<?= NavbarAction::url2Sign() ?>"><i class="fa fa-sign-in"></i>
+								Sign-in</a>
+							</li><?php
+						}
+					}
+					?>
 
 				</ul>
 
