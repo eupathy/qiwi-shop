@@ -18,7 +18,7 @@ use Validator;
 class OrderController extends BaseController
 {
 
-	public $layout = 'qiwiShop';
+	public $layout = 'order';
 
 	//Передаём настройки в Gateway
 	public function __construct()
@@ -61,35 +61,11 @@ class OrderController extends BaseController
 	}
 
 	/**
-	 * Страница ошибки авторизации
-	 */
-	public function authError()
-	{
-		$this->make('authError');
-	}
-
-	/**
 	 * Страница создания заказа
 	 */
 	public function createOrder()
 	{
 		$this->make('createOrder');
-	}
-
-	/**
-	 * Страница описания эмулятора магазина
-	 */
-	public function about()
-	{
-		$this->make('about');
-	}
-
-	/**
-	 * Страница описания SDK для работы с qiwi-gate
-	 */
-	public function aboutSdk()
-	{
-		$this->make('aboutSdk');
 	}
 
 	/**
@@ -317,6 +293,11 @@ class OrderController extends BaseController
 
 	}
 
+	/**
+	 * Обработка callback запроса
+	 *
+	 * @return string
+	 */
 	public function processCallback()
 	{
 		$requestParams = Input::all();

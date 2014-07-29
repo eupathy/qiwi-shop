@@ -42,6 +42,9 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_aboutSdk')) ?> ">
 						<a href="<?= URL::route('qiwiShop_aboutSdk') ?>">SDK</a>
 					</li>
+					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_settings')) ?> ">
+						<a href="<?= URL::route('qiwiShop_settings') ?>">Настройки</a>
+					</li>
 					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_createOrder')) ?> ">
 						<a href="<?= URL::route('qiwiShop_createOrder') ?>">Создать заказ</a>
 					</li>

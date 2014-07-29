@@ -1,12 +1,13 @@
 $(document).ready(function () {
 	$('button.tableBtn').click(function () {
-
+		$('button').attr('disabled', true);
 		var $btn = $(this);
 		var action = $btn.data('action');
 		var id = $btn.data('id');
 
 		$.post('orders/action/' + action, {order_id: id},
 			function (data) {
+				$('button').attr('disabled', false);
 				$('#message').dialog({
 					title: data['title'], show: 'fade', hide: 'fade', modal: true, close: function () {
 						location.reload();
@@ -24,7 +25,7 @@ $(document).ready(function () {
 	});
 
 	$('button.payReturnModal').click(function () {
-
+		$('button').attr('disabled', true);
 		var $modal = $(this).parents('#payReturn');
 		var action = $modal.data('action');
 		var id = $modal.data('id');
@@ -34,6 +35,7 @@ $(document).ready(function () {
 
 		$.post('orders/action/' + action, {order_id: id, sum: sum, comment: comment},
 			function (data) {
+				$('button').attr('disabled', false);
 				if (data['error']) {
 					$('#errorSum').html(data['error']['sum']);
 					$('#errorComment').html(data['error']['comment']);

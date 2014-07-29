@@ -45,9 +45,27 @@ class Validators
 	public static function messagesForErrors()
 	{
 		$rules = array(
-			'required' => 'Поле :attribute должно быть заполнено.',
-			'regex'    => 'Неправильный формат данных.',
-			'numeric'  => 'Введите корректную сумму.',
+			'required'   => 'Поле :attribute должно быть заполнено',
+			'regex'      => 'Неправильный формат данных',
+			'numeric'    => 'Введите корректную сумму',
+			'integer'    => 'Введите целое число',
+			'url'        => 'Введите корректный адрес',
+			'alpha_dash' => 'только латинские символы, цифры, _ и -',
+		);
+
+		return $rules;
+	}
+
+	public static function rulesForSetting()
+	{
+		$rules = array(
+			'name'     => '',
+			'gateId'   => 'required|integer',
+			'password' => 'required|alpha_dash',
+			'key'      => 'alpha_dash',
+			'lifetime' => 'integer',
+			'gateUrl'  => 'required|url',
+			'payUrl'   => 'required|url',
 		);
 
 		return $rules;
