@@ -31,7 +31,7 @@ class ShopCreateBillTest extends ShopTestCase
 		Order::truncate();
 		$order = new Order();
 		$order->create(array(
-			'user_id'  => 5,
+			'user_id'  => 1,
 			'item'     => 'New Lamp',
 			'sum'      => 123.45,
 			'tel'      => '+7123',
@@ -92,7 +92,7 @@ class ShopCreateBillTest extends ShopTestCase
 
 		$order = new Order();
 		$order->create(array(
-			'user_id'  => 5,
+			'user_id'  => 1,
 			'item'     => 'New Lamp2',
 			'sum'      => 543.21,
 			'tel'      => '+7123',

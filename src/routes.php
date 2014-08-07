@@ -18,10 +18,7 @@ Route::group(array(
 		'as'   => 'qiwiShop_ordersTable',
 		'uses' => 'OrderController@ordersTable',
 	));
-	Route::get('/orders/create', array(
-		'as'   => 'qiwiShop_createOrder',
-		'uses' => 'OrderController@createOrder',
-	));
+
 	Route::post('/orders/create', array(
 		'as'   => 'qiwiShop_postCreateOrder',
 		'uses' => 'OrderController@postCreateOrder',

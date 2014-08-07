@@ -18,12 +18,12 @@
 						Form::input('text', 'sum', '', array(
 							'placeholder' => 'Сумма возврата',
 							'class'       => 'form-control',
-							'id'          => 'inputSum',
+							'id' => 'inputReturnSum',
 							'required'    => 'required',
 						));
 						?>
 					</div>
-					<div id="errorSum" class="error text-center"></div>
+					<div id="errorReturnSum" class="error text-center"></div>
 				</div>
 				<div class="form-group row">
 					<?= Form::label('inputComment', 'Коммент:', array('class' => 'col-sm-3 control-label')) ?>
@@ -32,12 +32,12 @@
 						Form::textarea('comment', '', array(
 							'placeholder' => 'Комментарий к возврату (если нужен)',
 							'class'       => 'form-control',
-							'id'          => 'inputComment',
+							'id' => 'inputReturnComment',
 							'rows'        => '5',
 						));
 						?>
 					</div>
-					<div id="errorComment" class="error text-center"></div>
+					<div id="errorReturnComment" class="error text-center"></div>
 				</div>
 				<div class="text-center">
 					<?=

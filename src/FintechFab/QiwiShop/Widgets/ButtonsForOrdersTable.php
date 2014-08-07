@@ -1,20 +1,28 @@
 <?php
 namespace FintechFab\QiwiShop\Widgets;
 
-use Config;
 use FintechFab\QiwiShop\Components\Dictionary;
 use FintechFab\QiwiShop\Models\Order;
+use FintechFab\QiwiShop\Models\Setting;
 use Form;
 
 class ButtonsForOrdersTable
 {
 	/**
-	 * @param Order $order
+	 * @var Order   $order
+	 * @var Setting $settings
 	 *
 	 * @return array
 	 */
-	public static function getButtons($order)
+	private static $settings;
+
+	public static function getButtons($order, $settings)
 	{
+		/**
+		 * Setting
+		 */
+		self::$settings = $settings;
+
 		$sumReturn = 0;
 		$status = Dictionary::statusRussian($order->status);
 		switch ($order->status) {
@@ -86,10 +94,10 @@ class ButtonsForOrdersTable
 				break;
 			case 'payBill':
 				$query_data = array(
-					'shop'        => Config::get('ff-qiwi-shop::provider.id'),
+					'shop'        => self::$settings->id,
 					'transaction' => $order_id,
 				);
-				$button = link_to(Config::get('ff-qiwi-shop::payUrl') . '?' . http_build_query($query_data),
+				$button = link_to(self::$settings->pay_url . '?' . http_build_query($query_data),
 					'Оплатить', array(
 						'target' => '_blank',
 						'class'  => 'btn btn-sm btn-success margin-likeTableBtn',

@@ -1,16 +1,27 @@
 <?php
 /**
- * @var Order $orders
+ * @var Order   $orders
+ * @var Setting $settings
  */
 use FintechFab\QiwiShop\Models\Order;
+use FintechFab\QiwiShop\Models\Setting;
 use FintechFab\QiwiShop\Widgets\ButtonsForOrdersTable;
 
+echo View::make('ff-qiwi-shop::order.inc.createOrder');
 ?>
 <?= View::make('ff-qiwi-shop::order.inc.payReturnModal') ?>
 <script type="application/javascript">
 	<?php require(__DIR__ . '/../layouts/inc/js/ActionTableButtons.js') ?>
 </script>
 
+<?=
+Form::button('Новый заказ', array(
+	'class'       => 'btn btn-primary',
+	'id'          => 'newOrder',
+	'data-toggle' => 'modal',
+	'data-target' => '#newOrderModal',
+))?>
+<br><br>
 <table class="table table-striped table-hover" id="ordersTable">
 	<tr>
 		<td><b>ID</b></td>
@@ -22,7 +33,7 @@ use FintechFab\QiwiShop\Widgets\ButtonsForOrdersTable;
 		<td><b>Действия с заказом</b></td>
 	</tr>
 	<?php foreach ($orders as $order): ?>
-		<?php $arr = ButtonsForOrdersTable::getButtons($order) ?>
+		<?php $arr = ButtonsForOrdersTable::getButtons($order, $settings) ?>
 		<tr>
 			<td><?= $order->id ?></td>
 			<td><?= $order->item ?></td>

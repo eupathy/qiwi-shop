@@ -44,7 +44,7 @@ class QiwiShopController extends BaseController
 	public function settings()
 	{
 		$user_id = Config::get('ff-qiwi-shop::user_id');
-		$setting = Setting::whereUserId($user_id)->first();
+		$setting = Setting::find($user_id);
 		if ($setting == null) {
 			return $this->make('setSettings', array('user_id' => $user_id));
 		}
@@ -76,10 +76,10 @@ class QiwiShopController extends BaseController
 			return $result;
 		}
 		$data['user_id'] = Config::get('ff-qiwi-shop::user_id');
-		$setting = Setting::whereUserId($data['user_id'])->first() != null
-			? Setting::whereUserId($data['user_id'])->first()
+		$setting = Setting::find($data['user_id']) != null
+			? Setting::find($data['user_id'])
 			: new Setting();
-		$setting->newSetting($data);
+		$setting->newSettings($data);
 
 		return array('message' => 'Настройки сохранены');
 

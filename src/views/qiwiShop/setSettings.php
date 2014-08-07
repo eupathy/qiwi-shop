@@ -98,7 +98,7 @@
 	<div class="form-group row">
 		<?= Form::label('inputGateUrl', 'Ссылка на QIWI Gate:', array('class' => 'col-sm-4 control-label')) ?>
 		<div class="col-sm-4">
-			<?php $url = str_replace(':8000', '', URL::to('/qiwi/gate/api/v2/prv/')); ?>
+			<?php $url = str_replace(':8000', '', URL::to('/qiwi/gate/api/v2/prv/')) . '/'; ?>
 			<?=
 			Form::input('text', 'gateUrl', $url, array(
 				'placeholder' => $url,

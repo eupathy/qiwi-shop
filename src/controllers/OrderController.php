@@ -6,11 +6,11 @@ use Config;
 use FintechFab\QiwiSdk\Curl;
 use FintechFab\QiwiSdk\Gateway;
 use FintechFab\QiwiShop\Components\Dictionary;
-use FintechFab\QiwiShop\Components\Orders;
 use FintechFab\QiwiShop\Components\PaysReturn;
 use FintechFab\QiwiShop\Components\Validators;
 use FintechFab\QiwiShop\Models\Order;
 use FintechFab\QiwiShop\Models\PayReturn;
+use FintechFab\QiwiShop\Models\Setting;
 use Input;
 use Log;
 use Validator;
@@ -23,11 +23,8 @@ class OrderController extends BaseController
 	//Передаём настройки в Gateway
 	public function __construct()
 	{
-		$config = array(
-			'gateUrl'  => Config::get('ff-qiwi-shop::gateUrl'),
-			'provider' => Config::get('ff-qiwi-shop::provider'),
-		);
-		Gateway::setConfig($config);
+		$oSettings = Setting::find(Config::get('ff-qiwi-shop::user_id'));
+		$this->setConfigForGateway($oSettings);
 	}
 
 	//Определяем метод по $action переданному в url
@@ -57,15 +54,8 @@ class OrderController extends BaseController
 		$orders = Order::whereUserId($user_id)
 			->orderBy('id', 'desc')
 			->paginate(10);
-		$this->make('ordersTable', array('orders' => $orders));
-	}
-
-	/**
-	 * Страница создания заказа
-	 */
-	public function createOrder()
-	{
-		$this->make('createOrder');
+		$setting = Setting::find($user_id);
+		$this->make('ordersTable', array('orders' => $orders, 'settings' => $setting));
 	}
 
 	/**
@@ -99,8 +89,14 @@ class OrderController extends BaseController
 		$result['errors'] = array(
 			'common' => 'Ошибка. Повторите ещё раз.',
 		);
+
 		//Создаём заказ
-		$order = Orders::newOrder($data);
+		$data['user_id'] = Config::get('ff-qiwi-shop::user_id');
+		$validity = Setting::find($data['user_id'])->lifetime;
+		$data['lifetime'] = date('Y-m-d H:i:s', time() + 3600 * 24 * $validity);
+
+		$order = new Order();
+		$order->saveData($data);
 
 		//Если заказ создан, то вместо ошибки отдаём ОК
 		if ($order) {
@@ -300,8 +296,12 @@ class OrderController extends BaseController
 	 */
 	public function processCallback()
 	{
+		$provider = $this->getProvider();
+		$oSettings = Setting::whereGateId($provider['login'])->first();
+		$this->setConfigForGateway($oSettings);
+
 		$requestParams = Input::all();
-		Log::info('Получены параметры:', $requestParams);
+		Log::info('Получены параметры в qiwi-shop для обработки callback:', $requestParams);
 		$gate = new Gateway($this->makeCurl());
 		if ($gate->doParseCallback($requestParams)) {
 			$order = Order::find($gate->getCallbackOrderId());
@@ -311,7 +311,10 @@ class OrderController extends BaseController
 				return $gate->doCallbackResponse();
 			}
 			$newStatus = $gate->getValueBillStatus();
-			Log::info('Статусы заказов:', array('oldStatus' => $order->status, 'newStatus' => $newStatus));
+			Log::info('Статусы заказов после обработки callback:', array(
+				'oldStatus' => $order->status,
+				'newStatus' => $newStatus,
+			));
 			if ($order->status != $newStatus) {
 				$order->status = $newStatus;
 				$order->save();
@@ -344,4 +347,46 @@ class OrderController extends BaseController
 	}
 
 
+	/**
+	 * Получить логин:пароль из заголовка callback`а
+	 *
+	 * @return array|null
+	 */
+	private function getProvider()
+	{
+		if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+			$authBasicHeader = trim($_SERVER['HTTP_AUTHORIZATION']);
+
+			preg_match('/^Basic (.+)$/', $authBasicHeader, $matches);
+			@list($login, $password) = explode(':', base64_decode($matches[1]));
+			$providerData = array(
+				'login'    => $login,
+				'password' => $password,
+			);
+
+			return $providerData;
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param Setting $oSettings
+	 */
+	private function setConfigForGateway($oSettings)
+	{
+		if ($oSettings == null) {
+			return;
+		}
+		$config = array(
+			'gateUrl'  => $oSettings->gate_url,
+			'provider' => array(
+				'id'       => $oSettings->gate_id,
+				'password' => $oSettings->gate_password,
+				'name'     => $oSettings->name,
+				'key'      => $oSettings->gate_key,
+			),
+		);
+		Gateway::setConfig($config);
+	}
 }

@@ -18,7 +18,7 @@ class ShopPayReturnTest extends ShopTestCase
 		parent::setUp();
 		$order = new Order();
 		$order->create(array(
-			'user_id'  => 5,
+			'user_id'  => 1,
 			'item'     => 'New Lamp2',
 			'sum'      => 543.21,
 			'tel'      => '+7123',
@@ -45,7 +45,7 @@ class ShopPayReturnTest extends ShopTestCase
 				'order_id' => '1',
 			)
 		);
-		$this->assertContains('Поле sum должно быть заполнено.', $resp->original['error']['sum']);
+		$this->assertContains('Поле sum должно быть заполнено', $resp->original['error']['sum']);
 	}
 
 	/**

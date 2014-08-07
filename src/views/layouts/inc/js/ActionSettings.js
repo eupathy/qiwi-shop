@@ -33,7 +33,7 @@ $(document).ready(function () {
 				}
 				$('#message').dialog({
 					title: 'Сообщение', show: 'fade', hide: 'fade', modal: true, close: function () {
-						location.replace("/qiwi/shop/orders/create");
+						location.replace("/qiwi/shop/orders");
 					}
 				}).html(data['message']);
 			}

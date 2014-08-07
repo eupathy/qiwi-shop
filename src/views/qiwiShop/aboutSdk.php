@@ -24,7 +24,7 @@
 		<p>Пакет на <a href="https://github.com/fintech-fab/qiwi-sdk">GitHub</a></p>
 
 		<p>
-			Полноценно взаимодействует с эмулятором интернет магазина
+			Увидеть работу можно в связке с эмулятором интернет магазина
 			<a href="https://github.com/fintech-fab/qiwi-shop"> QIWI shop </a>
 		</p>
 

@@ -9,7 +9,6 @@ use Eloquent;
  *
  * @package FintechFab\QiwiShop\Models
  *
- * @property integer   $user_id
  * @property integer   $id
  * @property string    $name
  * @property integer   $gate_id
@@ -22,20 +21,22 @@ use Eloquent;
  * @property string    $updated_at
  *
  * @method static Setting find()
+ * @method static Setting first()
  * @method static Setting whereUserId()
+ * @method static Setting whereGateId()
  */
 class Setting extends Eloquent
 {
 
 	protected $fillable = array(
-		'user_id', 'name', 'gate_id', 'gate_password', 'gate_key', 'lifetime', 'gate_url', 'pay_url'
+		'name', 'gate_id', 'gate_password', 'gate_key', 'lifetime', 'gate_url', 'pay_url'
 	);
 	protected $table = 'settings';
 	protected $connection = 'ff-qiwi-shop';
 
-	public function newSetting($data)
+	public function newSettings($data)
 	{
-		$this->user_id = $data['user_id'];
+		$this->id = $data['user_id'];
 		$this->name = $data['name'];
 		$this->gate_id = $data['gateId'];
 		$this->gate_password = $data['password'];

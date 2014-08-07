@@ -114,4 +114,16 @@ class Order extends Eloquent
 				'idLastReturn' => $IdPayReturn
 			));
 	}
+
+	public function saveData($data)
+	{
+		$this->user_id = $data['user_id'];
+		$this->item = $data['item'];
+		$this->sum = $data['sum'];
+		$this->tel = $data['tel'];
+		$this->comment = $data['comment'];
+		$this->lifetime = $data['lifetime'];
+		$this->status = Order::C_ORDER_STATUS_NEW;
+		$this->save();
+	}
 } 

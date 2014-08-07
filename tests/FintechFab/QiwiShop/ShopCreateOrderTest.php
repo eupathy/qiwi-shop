@@ -29,7 +29,7 @@ class ShopCreateOrderTest extends ShopTestCase
 				'tel'  => '123',
 			)
 		);
-		$this->assertContains('Неправильный формат данных.', $resp->original['errors']['tel']);
+		$this->assertContains('Неправильный формат данных', $resp->original['errors']['tel']);
 	}
 
 	/**

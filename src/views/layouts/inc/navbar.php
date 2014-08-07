@@ -40,17 +40,16 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 						<a href="<?= URL::route('qiwiShop_about') ?>">About Qiwi Shop</a>
 					</li>
 					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_aboutSdk')) ?> ">
-						<a href="<?= URL::route('qiwiShop_aboutSdk') ?>">SDK</a>
+						<a href="<?= URL::route('qiwiShop_aboutSdk') ?>">About SDK</a>
 					</li>
 					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_settings')) ?> ">
 						<a href="<?= URL::route('qiwiShop_settings') ?>">Настройки</a>
 					</li>
-					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_createOrder')) ?> ">
-						<a href="<?= URL::route('qiwiShop_createOrder') ?>">Создать заказ</a>
-					</li>
 					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_ordersTable')) ?> ">
 						<a href="<?= URL::route('qiwiShop_ordersTable') ?>">Таблица заказов</a>
 					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
 					<?php
 					if (Route::has('registration')) {
 						if (Config::get('ff-qiwi-gate::user_id') > 0) {

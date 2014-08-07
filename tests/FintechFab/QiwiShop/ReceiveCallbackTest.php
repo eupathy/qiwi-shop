@@ -44,6 +44,7 @@ class ReceiveCallbackTest extends ShopTestCase
 
 		$_SERVER['HTTP_X_API_SIGNATURE'] = $sign;
 
+
 		$resp = $this->call(
 			'POST',
 			URL::route('qiwiShop_processCallback'),
