@@ -16,7 +16,7 @@ class ShopShowStatusAndCancelBillTest extends ShopTestCase
 		parent::setUp();
 		$order = new Order();
 		$order->create(array(
-			'user_id' => 1,
+			'user_id'  => 1,
 			'item'     => 'New Lamp2',
 			'sum'      => 543.21,
 			'tel'      => '+7123',

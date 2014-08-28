@@ -18,7 +18,7 @@
 						Form::input('text', 'sum', '', array(
 							'placeholder' => 'Сумма возврата',
 							'class'       => 'form-control',
-							'id' => 'inputReturnSum',
+							'id'          => 'inputReturnSum',
 							'required'    => 'required',
 						));
 						?>
@@ -32,7 +32,7 @@
 						Form::textarea('comment', '', array(
 							'placeholder' => 'Комментарий к возврату (если нужен)',
 							'class'       => 'form-control',
-							'id' => 'inputReturnComment',
+							'id'          => 'inputReturnComment',
 							'rows'        => '5',
 						));
 						?>
