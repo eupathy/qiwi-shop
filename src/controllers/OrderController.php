@@ -13,6 +13,7 @@ use FintechFab\QiwiShop\Models\PayReturn;
 use FintechFab\QiwiShop\Models\Setting;
 use Input;
 use Log;
+use Request;
 use Validator;
 
 class OrderController extends BaseController
@@ -296,6 +297,8 @@ class OrderController extends BaseController
 	 */
 	public function processCallback()
 	{
+		$request = Request::header();
+		Log::info('Пришёл запрос callback с такими заголовками ', $request);
 		$provider = $this->getProvider();
 		$oSettings = Setting::whereGateId($provider['login'])->first();
 		$this->setConfigForGateway($oSettings);
@@ -357,8 +360,14 @@ class OrderController extends BaseController
 	 */
 	private function getProvider()
 	{
+
 		if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
 			$authBasicHeader = trim($_SERVER['HTTP_AUTHORIZATION']);
+		}
+		if (isset($_SERVER['authorization'])) {
+			$authBasicHeader = trim($_SERVER['authorization']);
+		}
+		if (isset($authBasicHeader)) {
 
 			preg_match('/^Basic (.+)$/', $authBasicHeader, $matches);
 			@list($login, $password) = explode(':', base64_decode($matches[1]));

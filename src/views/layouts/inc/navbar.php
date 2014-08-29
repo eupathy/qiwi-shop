@@ -38,7 +38,7 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 					if (Route::has('qiwiGate_billsTable')) {
 						?>
 						<li class="act">
-						<a href="<?= URL::route('qiwiGate_billsTable') ?>">Счета</a>
+							<a href="<?= URL::route('qiwiGate_billsTable') ?>">Счета</a>
 						</li>
 					<?php
 					}
@@ -52,7 +52,7 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 						<a href="<?= URL::route('qiwiShop_about') ?>">Инфо</a>
 					</li>
 					<li class="act">
-					<a href="<?= URL::route('qiwiShop_settings') ?>">Настройки</a>
+						<a href="<?= URL::route('qiwiShop_settings') ?>">Настройки</a>
 					</li>
 					<li class="act">
 						<a href="<?= URL::route('qiwiShop_ordersTable') ?>">Заказы</a>
