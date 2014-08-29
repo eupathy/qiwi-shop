@@ -301,7 +301,10 @@ class OrderController extends BaseController
 		$this->setConfigForGateway($oSettings);
 
 		$requestParams = Input::all();
-		Log::info('Получены параметры в qiwi-shop для обработки callback:', $requestParams);
+		Log::info('Получены параметры в qiwi-shop для обработки callback:', array(
+			'$requestParams' => $requestParams,
+			'$provider'      => $provider,
+		));
 		$gate = new Gateway($this->makeCurl());
 		if ($gate->doParseCallback($requestParams)) {
 			$order = Order::find($gate->getCallbackOrderId());
