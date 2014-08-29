@@ -1,11 +1,12 @@
 <?php
+use FintechFab\QiwiShop\Models\Order;
+use FintechFab\QiwiShop\Models\Setting;
+use FintechFab\QiwiShop\Widgets\ButtonsForOrdersTable;
+
 /**
  * @var Order   $orders
  * @var Setting $settings
  */
-use FintechFab\QiwiShop\Models\Order;
-use FintechFab\QiwiShop\Models\Setting;
-use FintechFab\QiwiShop\Widgets\ButtonsForOrdersTable;
 
 echo View::make('ff-qiwi-shop::order.inc.createOrder');
 ?>

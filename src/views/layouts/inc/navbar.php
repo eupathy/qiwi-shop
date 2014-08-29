@@ -8,46 +8,59 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 <header>
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 					<span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<?= URL::route('qiwiShop_ordersTable') ?>">
-					<i><img class="logo-icon" src="<?= $logo ?>"></i> Qiwi Shop Emulator </a>
+				<a class="navbar-brand" href="<?= URL::route('qiwiGate_about') ?>">
+					<i><img class="logo-icon" src="<?= $logo ?>"></i> Qiwi Сервер: </a>
 			</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<?php if (Route::has('qiwiGate_about')): ?>
-						<li>
-							<a href="<?= URL::route('qiwiGate_about') ?>">About Qiwi Gate</a>
+
+					<?php
+					if (Route::has('qiwiGate_about')) {
+						?>
+						<li class="act">
+							<a href="<?= URL::route('qiwiGate_about') ?>">Инфо</a>
 						</li>
-					<?php endif ?>
-					<?php if (Route::has('qiwiGate_account')): ?>
-						<li>
-							<a href="<?= URL::route('qiwiGate_account') ?>">Аккаунт QIWI</a>
+					<?php
+					}
+					if (Route::has('qiwiGate_account')) {
+						?>
+						<li class="act">
+							<a href="<?= URL::route('qiwiGate_account') ?>">Аккаунт</a>
 						</li>
-					<?php endif ?>
-					<?php if (Route::has('qiwiGate_billsTable')): ?>
-						<li>
-							<a href="<?= URL::route('qiwiGate_billsTable') ?>">Счета</a>
+					<?php
+					}
+					if (Route::has('qiwiGate_billsTable')) {
+						?>
+						<li class="act">
+						<a href="<?= URL::route('qiwiGate_billsTable') ?>">Счета</a>
 						</li>
-					<?php endif ?>
-					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_about')) ?> ">
-						<a href="<?= URL::route('qiwiShop_about') ?>">About Qiwi Shop</a>
+					<?php
+					}
+					?>
+					<li style="margin-left: 50px;">
+						<a class="navbar-brand" href="<?= URL::route('qiwiShop_about') ?>">
+							<i><img class="logo-icon" src="<?= $logo ?>"></i> Магазин: </a>
 					</li>
-					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_aboutSdk')) ?> ">
-						<a href="<?= URL::route('qiwiShop_aboutSdk') ?>">About SDK</a>
+
+					<li class="act">
+						<a href="<?= URL::route('qiwiShop_about') ?>">Инфо</a>
 					</li>
-					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_settings')) ?> ">
-						<a href="<?= URL::route('qiwiShop_settings') ?>">Настройки</a>
+					<li class="act">
+					<a href="<?= URL::route('qiwiShop_settings') ?>">Настройки</a>
 					</li>
-					<li class=" <?= NavbarAction::isActive(URL::route('qiwiShop_ordersTable')) ?> ">
-						<a href="<?= URL::route('qiwiShop_ordersTable') ?>">Таблица заказов</a>
+					<li class="act">
+						<a href="<?= URL::route('qiwiShop_ordersTable') ?>">Заказы</a>
 					</li>
+					<li class="act">
+						<a href="<?= URL::route('qiwiShop_aboutSdk') ?>">PHP SDK</a>
+					</li>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<?php
@@ -68,8 +81,19 @@ $logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAB
 
 
 			</div>
-			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container-fluid -->
 	</nav>
 </header>
+
+<script type="application/javascript">
+	$(document).ready(function () {
+		setActiveUrl();
+	});
+	function setActiveUrl() {
+		var href = '<?= URL::current() ?>';
+		var $links = $('.nav.navbar-nav li.act');
+		var $link = $links.find('a[href="' + href + '"]');
+		$link.parent().addClass('active');
+	}
+
+</script>

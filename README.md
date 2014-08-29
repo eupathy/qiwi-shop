@@ -1,7 +1,10 @@
 Qiwi Shop Emulator
 =========
 
+Демо-сервер: http://fintech-fab.ru/qiwi/shop/about
+
 Эмулятор интернет магазина для работы с сервером QIWI.
+Подробная инструкция по использованию находится в разработке.
 Полноценно работает с пакетом QIWI-SDK, так же можно протестировать работу используя эмулятор сервера QIWI:
 
 - QIWI-SDK: https://github.com/fintech-fab/qiwi-sdk
@@ -9,7 +12,7 @@ Qiwi Shop Emulator
 
 # Требования
 
-- php >=5.3.0
+- php >=5.4.0
 - Laravel Framework >= 4.1.*
 - MySQL Database
 - Laravel queue driver configuration
