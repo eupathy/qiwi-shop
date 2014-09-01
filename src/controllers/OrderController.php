@@ -360,14 +360,10 @@ class OrderController extends BaseController
 	 */
 	private function getProvider()
 	{
+		$providerData = null;
 
 		if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
 			$authBasicHeader = trim($_SERVER['HTTP_AUTHORIZATION']);
-		}
-		if (isset($_SERVER['authorization'])) {
-			$authBasicHeader = trim($_SERVER['authorization']);
-		}
-		if (isset($authBasicHeader)) {
 
 			preg_match('/^Basic (.+)$/', $authBasicHeader, $matches);
 			@list($login, $password) = explode(':', base64_decode($matches[1]));
@@ -375,11 +371,16 @@ class OrderController extends BaseController
 				'login'    => $login,
 				'password' => $password,
 			);
-
-			return $providerData;
 		}
 
-		return null;
+		if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])) {
+			$providerData = array(
+				'login'    => (int)trim($_SERVER['PHP_AUTH_USER']),
+				'password' => trim($_SERVER['PHP_AUTH_PW']),
+			);
+		}
+
+		return $providerData;
 	}
 
 	/**
